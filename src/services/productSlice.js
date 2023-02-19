@@ -4,13 +4,20 @@ export const productSlice = createSlice({
   name: "product",
   initialState: {
     products: [],
+    fav:[],
   },
   reducers:{
-    getProducts: (state, action) => {
+    addProducts: (state, action) => {
         state.products = action.payload;
-    }
+    },
+    addToFav: (state, action) => {
+      state.fav.push(action.payload);
+    },
+    removeFromFav: (state, action) => {
+      state.fav = state.fav.filter(item => item.id !== action.payload.id);
+    },
   }
 });
 
-export const {getProducts} = productSlice.actions;
+export const {addProducts, addToFav, removeFromFav} = productSlice.actions;
 export default productSlice.reducer;
